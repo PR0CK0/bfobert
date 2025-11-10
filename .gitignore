@@ -1,0 +1,26 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+*.env
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Logs and training output
+logs/
+results/
+runs/
+*.log
+
+# Cache & temporary files
+.cache/
+.ipynb_checkpoints/
+*.tmp
+*.bak
