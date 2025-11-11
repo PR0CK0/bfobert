@@ -27,14 +27,22 @@ adjectives = [
 
 def generateExpanded(baseTerms, targetCount):
   generated = set()
-  while len(generated) < targetCount:
-    term = random.choice(baseTerms)
-    combo = term
-    if random.random() < 0.7:
-      combo = random.choice(adjectives) + ' ' + combo
-    if random.random() < 0.3:
-      combo = random.choice(adjectives) + ' ' + combo  # optional double adjective
-    generated.add(combo)
+  max_attempts = targetCount * 100  # Allow 100 attempts per desired term
+  attempts = 0
+
+  while len(generated) < targetCount and attempts < max_attempts:
+      term = random.choice(baseTerms)
+      combo = term
+      if random.random() < 0.7:
+          combo = random.choice(adjectives) + ' ' + combo
+      if random.random() < 0.3:
+          combo = random.choice(adjectives) + ' ' + combo
+      generated.add(combo)
+      attempts += 1
+
+  if len(generated) < targetCount:
+      print(f"Warning: Only generated {len(generated)} unique terms (requested {targetCount})")
+
   return list(generated)
 
 continuants = generateExpanded(continuants, 1000)
@@ -42,7 +50,7 @@ occurrents = generateExpanded(occurrents, 1000)
 
 data = pd.DataFrame({
   'term': continuants + occurrents,
-  'label': [0]*len(continuants) + [1] * len(occurrents)
+  'label': [0] * len(continuants) + [1] * len(occurrents)
 }).sample(frac = 1).reset_index(drop = True)
 
 data.to_csv('terms.csv', index = False)
