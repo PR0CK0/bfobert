@@ -28,6 +28,11 @@ pip install tensorboard
 pip install accelerate
 ```
 
+or
+```bash
+pip install -r requirements.txt
+```
+
 ## 📁 Project Structure
 
 ```bash
@@ -39,6 +44,7 @@ bfobert/
 ├── results/            # model outputs (auto-created)
 ├── venv/               # virtual environment (ignored)
 ├── .gitignore
+├── requirements.txt
 └── README.md
 ```
 
@@ -98,8 +104,12 @@ Example terms.csv:
 
 ## 💡 Notes
 
+* Locked to CPU only because it's such a tiny example
 * Not modular, not written for easy change of values... just a nice little test of ontology classification
 * Adjust model freezing logic in initializeModel() if you want to fine-tune more or fewer layers
 * You can modify dataset size or experiment with other small Transformer backbones, e.g. MiniLM, BERT-tiny
 * Each run produces its own timestamped directory under /results and /logs, making experiment tracking easy
 * You can view resource usage summaries directly in the console at the end of training
+
+## ❗ AI-Use Disclaimer
+This README is generated in its entirety by GPT-5.
